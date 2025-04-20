@@ -9,15 +9,29 @@ public class prueba1 {
 
 
 		ColaPrioridadHeapTDA cola = new ColaPrioridadHeapsIMP();
+		
         cola.InicializarCola();
 
-        // Insertamos elementos con distintas prioridades
-        cola.AcolarPrioridad(100, 2); // valor 100, prioridad 2
-        cola.AcolarPrioridad(200, 5); // valor 200, prioridad 5
-        cola.AcolarPrioridad(300, 1); // valor 300, prioridad 1
-        cola.AcolarPrioridad(400, 3); // valor 400, prioridad 3
+		System.out.println(cola.ColaVacia());
+
+        cola.AcolarPrioridad(10, 2); 
+        cola.AcolarPrioridad(20, 5); 
+        cola.AcolarPrioridad(5, 1); 
+        cola.AcolarPrioridad(35, 3); 
         
-        //mostrar los elementos en orden (por prioridad)
+
+		System.out.println(cola.Prioridad());
+		
+		cola.Desacolar();
+		cola.AcolarPrioridad(1, 10);
+		cola.AcolarPrioridad(15, 3);
+		cola.AcolarPrioridad(25, 7);
+		
+
+		System.out.println(cola.Prioridad());
+
+		System.out.println(cola.ColaVacia());
+        
         cola.HeapSort();
         
         

@@ -6,24 +6,29 @@ import imp.heapIMP;
 public class principal {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		heapTDA heap = new heapIMP();
 		
-		heap.inicializarHeap();
-
-		heap.insercion(20);
-		heap.insercion(10);
+		heap.InicializarHeap();
 		
-		heap.insercion(30);
-		heap.insercion(25);
+		System.out.println(heap.ColaVacia());
 
-		System.out.println(heap.cima());
+		heap.Acolar(20);
+		heap.Acolar(10);
+		heap.Acolar(30);
+		heap.Acolar(25);
 
-		heap.eliminar();
+		System.out.println(heap.Primero());
+
+		heap.Desacolar();
+		heap.Acolar(45);
+		heap.Acolar(15);
+		heap.Acolar(35);
+
+		System.out.println(heap.ColaVacia());
 		
-		System.out.println(heap.cima()); 
+		heap.HeapSort();
 		
-		// aca imprime SOS UN NASHE DEL HEAP
 	}
 
 }

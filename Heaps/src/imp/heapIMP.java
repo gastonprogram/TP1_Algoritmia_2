@@ -12,14 +12,14 @@ public class heapIMP implements heapTDA {
 	int tamaño;
 	
 	@Override
-	public void inicializarHeap() {
+	public void InicializarHeap() {
 		heap = new Elemento[100];
 		tamaño = 0;
 
 	}
 
 	@Override
-	public void insercion(int x) {
+	public void Acolar(int x) {
 		Elemento nuevo = new Elemento();
         nuevo.valor = x;
         heap[tamaño] = nuevo;
@@ -29,7 +29,7 @@ public class heapIMP implements heapTDA {
 	}
 
 	@Override
-	public void eliminar() {
+	public void Desacolar() {
 		if (tamaño == 0) return;
 
         heap[0] = heap[tamaño - 1];
@@ -37,43 +37,53 @@ public class heapIMP implements heapTDA {
         intercambiarHaciaAbajo(0);
 
 	}
+	
+	public void HeapSort() {
+		
+	    heapIMP copia = new heapIMP();
+	    copia.InicializarHeap();
 
-	private void intercambiarHaciaArriba(int indice) {
-		while (indice > 0 && heap[indice].valor > heap[padre(indice)].valor) {
-            intercambiar(indice, padre(indice));
-            indice = padre(indice);
-        }
+	    for (int i = 0; i < tamaño; i++) {
+	        copia.Acolar(heap[i].valor);
+	    }
 
+	    System.out.println("Elementos en orden de valor:");
+	    while (!copia.ColaVacia()) {
+	        System.out.println("Valor: " + copia.Primero());
+	        copia.Desacolar();
+	    }
 	}
 
-	private void intercambiarHaciaAbajo(int indice) {
-		int mayor = indice;
-        int izq = hijoIzq(indice);
-        int der = hijoDer(indice);
 
-        if (izq < tamaño && heap[izq].valor > heap[mayor].valor) {
-            mayor = izq;
+	private void intercambiarHaciaArriba(int i) {
+		while (i > 0) {
+            int padre = (i - 1) / 2;
+            if (heap[i].valor > heap[padre].valor) {
+                intercambiar(i, padre);
+                i = padre;
+            } else {
+                break;
+            }
         }
-        if (der < tamaño && heap[der].valor > heap[mayor].valor) {
-            mayor = der;
+		
+	}
+
+	private void intercambiarHaciaAbajo(int i) {
+		int hijoIzq = 2 * i + 1;
+        int hijoDer = 2 * i + 2;
+        int mayor = i;
+
+        if (hijoIzq < tamaño && heap[hijoIzq].valor > heap[mayor].valor) {
+            mayor = hijoIzq;
         }
-        if (mayor != indice) {
-            intercambiar(indice, mayor);
+        if (hijoDer < tamaño && heap[hijoDer].valor > heap[mayor].valor) {
+            mayor = hijoDer;
+        }
+        if (mayor != i) {
+            intercambiar(i, mayor);
             intercambiarHaciaAbajo(mayor);
         }
 
-	}
-	
-	private int padre(int i){
-	        return (i - 1) / 2;
-	}
-
-	private int hijoIzq(int i){
-	        return 2 * i + 1;
-	}
-
-	private int hijoDer(int i){
-	        return 2 * i + 2;
 	}
 
 	private void intercambiar(int i, int j) {
@@ -83,15 +93,16 @@ public class heapIMP implements heapTDA {
 	}
 
 	@Override
-	public boolean estaVacio() {
-		// TODO Auto-generated method stub
+	public boolean ColaVacia() {
+
 		return (tamaño == 0);
 	}
 
 	@Override
-	public int cima() {
+	public int Primero() {
 		 if (tamaño == 0) return -1; 
 	        return heap[0].valor;
 	}
 
+	
 }

@@ -14,10 +14,8 @@ public class ColaPrioridadHeapsIMP implements ColaPrioridadHeapTDA {
     
 	@Override
 	public void InicializarCola() {
-		
 		heap = new Elemento[100];
         tamaño = 0;
-
 	}
 
 	@Override
@@ -26,8 +24,8 @@ public class ColaPrioridadHeapsIMP implements ColaPrioridadHeapTDA {
 	        nuevo.valor = x;
 	        nuevo.prioridad = prioridad;
 
-	        heap[tamaño] = nuevo; //insertar elemento
-	        intercambiarHaciaArriba(tamaño); //conservar propiedad heap
+	        heap[tamaño] = nuevo;
+	        intercambiarHaciaArriba(tamaño);
 	        tamaño++;
 	}
 
@@ -35,14 +33,13 @@ public class ColaPrioridadHeapsIMP implements ColaPrioridadHeapTDA {
 	public void Desacolar() {
 		if (tamaño == 0) return;
 
-        heap[0] = heap[tamaño - 1]; //reemplazar raíz con último
+        heap[0] = heap[tamaño - 1];
         tamaño--;
-        intercambiarHaciaAbajo(0); //conservar propiedad heap
+        intercambiarHaciaAbajo(0);
 	}
 	
 	@Override
 	public void HeapSort() {
-	    // Crear una copia del heap actual
 	    ColaPrioridadHeapsIMP copia = new ColaPrioridadHeapsIMP();
 	    copia.InicializarCola();
 
@@ -50,7 +47,6 @@ public class ColaPrioridadHeapsIMP implements ColaPrioridadHeapTDA {
 	        copia.AcolarPrioridad(heap[i].valor, heap[i].prioridad);
 	    }
 
-	    // Desacolar desde la copia usando sus propios métodos
 	    System.out.println("Elementos en orden de prioridad:");
 	    while (!copia.ColaVacia()) {
 	        System.out.println("Valor: " + copia.Primero() + " | Prioridad: " + copia.Prioridad());
@@ -75,8 +71,7 @@ public class ColaPrioridadHeapsIMP implements ColaPrioridadHeapTDA {
 		return heap[0].prioridad;
 
 	}
-	
-	// metodos privados
+
 	private void intercambiar(int i, int j) {
         Elemento temp = heap[i];
         heap[i] = heap[j];
@@ -110,7 +105,7 @@ public class ColaPrioridadHeapsIMP implements ColaPrioridadHeapTDA {
 
         if (mayor != i) {
             intercambiar(i, mayor);
-            intercambiarHaciaAbajo(mayor); // recursivo
+            intercambiarHaciaAbajo(mayor);
         }
     }
 }

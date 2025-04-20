@@ -1,12 +1,10 @@
 package api;
 
 public interface heapTDA {
-	void inicializarHeap();
-	void insercion(int x);
-	void eliminar();
-	boolean estaVacio();
-	int cima();
-	
-	
-
+	void InicializarHeap();
+	void Acolar(int x);
+	void Desacolar();
+	void HeapSort();
+	boolean ColaVacia();
+	int Primero();
 }
